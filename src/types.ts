@@ -1,0 +1,16 @@
+export type AppId = 'whatsapp'|'instagram'|'photos'|'camera'|'phone'|'contacts'|'mail'|'calendar'|'notes'|'safari'|'music'|'maps'|'calculator'|'files'|'settings'|'wallet'|'weather'|'reminders'|'clock'|'fitness';
+export type Message = { id:string; from:'me'|'them'; text:string; at:string; kind?:'text'|'voice'|'image'; read?:boolean };
+export type Chat = { id:string; name:string; subtitle:string; avatar:string; accent:string; group?:boolean; pinned?:boolean; archived?:boolean; unread?:number; messages:Message[] };
+export type Photo = { id:string; title:string; album:'Family'|'Work'|'Gym'|'Recents'; date:string; url?:string; colors:string; emoji:string; favorite?:boolean; userCreated?:boolean };
+export type Person = { id:string; name:string; number:string; email:string; avatar:string; accent:string; role:string; favorite?:boolean; userCreated?:boolean };
+export type Email = {id:string; sender:string; to:string; subject:string; body:string; date:string; folder:'inbox'|'sent'|'drafts'; starred?:boolean};
+export type CalEvent = {id:string; date:string; time:string; title:string; place:string; kind:'work'|'family'|'personal'|'gym'};
+export type Note = {id:string;title:string;body:string;updated:number};
+export type Reminder = {id:string;title:string;date:string;time:string;done:boolean};
+export type FileItem = {id:string;name:string;folder:string;type:'pdf'|'txt'|'image'|'folder';content:string;userCreated?:boolean};
+export type Alarm = {id:string;time:string;label:string;enabled:boolean};
+export type PhoneSettings = {name:string;wallpaper:number;appearance:'dark'|'light';notifications:boolean;sounds:boolean;haptics:boolean;brightness:number;showPreviews:boolean};
+export const uid=()=>Math.random().toString(36).slice(2,10)+Date.now().toString(36).slice(-4);
+export const localDate=(d=new Date())=>`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+export const offsetDate=(amount:number)=>{const d=new Date();d.setDate(d.getDate()+amount);return localDate(d)};
+export const readableDate=(d:Date)=>d.toLocaleDateString('id-ID',{weekday:'long',day:'numeric',month:'long'});
